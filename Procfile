@@ -1,1 +1,1 @@
-web: java $JAVA_OPTS -cp target/classes:target/dependency/*
+web: java -jar target/toDoList-1.0.jar
