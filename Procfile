@@ -1,1 +1,1 @@
-web: java -cp target/classes/:target/dependency/* com.diligre
+web: java -cp target/classes/:target/dependency/* com.diligre/config/initializer/ApplicationInitializer
