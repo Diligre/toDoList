@@ -12,7 +12,7 @@ public class ApplicationInitializer implements WebApplicationInitializer {
 
     @Override
     public void onStartup(ServletContext container) {
-        XmlWebApplicationContext appContext = new XmlWebApplicationContext();
+         XmlWebApplicationContext appContext = new XmlWebApplicationContext();
         appContext.setConfigLocation("/WEB-INF/dispatcher-servlet.xml");
         ServletRegistration.Dynamic dispatcher =
                 container.addServlet("dispatcher", new DispatcherServlet(appContext));
