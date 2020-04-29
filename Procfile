@@ -1,1 +1,1 @@
-web java -Dserver.port=$PORT $JAVA_OPTS -jar target/toDoList-1.0-SNAPSHOT.jar
+java $JAVA_OPTS -jar target/toDoList-1.0-SNAPSHOT.jar --server.port=$PORT $JAR_OPTS
