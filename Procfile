@@ -1,1 +1,1 @@
-web: java -cp target/classes/:target/dependency/* com/diligre/config/initializer/ApplicationInitializer
+web java -D server.port=$PORT $JAVA_OPTS -jar target/toDoList-1.0-SNAPSHOT.jar
