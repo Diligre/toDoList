@@ -1,1 +1,1 @@
-web: java -jar target/toDoList-1.0.jar
+web: java -cp target/classes/:target/dependency/* com.diligre
