@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@CrossOrigin
 @RequestMapping(value = "/project")
 public class ProjectController {
 
@@ -24,6 +23,7 @@ public class ProjectController {
 
     @GetMapping
     public List<Project> allData(){
+        System.out.println("vaduxa lubut xyi");
         return projectService.getAll();
     }
 
