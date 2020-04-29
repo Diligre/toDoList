@@ -3,6 +3,9 @@ package com.diligre.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import javax.validation.constraints.Future;
+import java.util.Date;
+
 
 @Data
 @Entity
@@ -10,8 +13,8 @@ import javax.persistence.*;
 public class Task {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "id_seq")
-    @SequenceGenerator(name = "id_seq", sequenceName = "id_seq",allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "task_id_seq")
+    @SequenceGenerator(name = "task_id_seq", sequenceName = "task_id_seq", allocationSize = 1)
     private Long id;
 
     @Column(name = "name")
@@ -20,9 +23,14 @@ public class Task {
     @Column(name = "status")
     private Boolean status;
 
+    @Column(name = "priority")
+    private Long priority;
+
+    @Column(name = "dead_line")
+    private Date deadLine;
+
     @ManyToOne
     @JoinColumn(name = "project_id")
     private Project project;
-
 
 }
