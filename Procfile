@@ -1,1 +1,1 @@
-java $JAVA_OPTS -jar target/toDoList-1.0-SNAPSHOT.jar --server.port=$PORT $JAR_OPTS
+web: java $JAVA_OPTS -jar target/dependency/webapp-runner.jar --port $PORT target/*.jar
