@@ -9,6 +9,6 @@ import java.util.List;
 @NoArgsConstructor
 public class BulkDeleteDto {
 
-    private List<Long> ids;
+        private List<Long> ids;
 
 }
