@@ -118,6 +118,8 @@ public class TaskService {
             tasksToUpdatePriority.forEach(t -> t.setPriority(t.getPriority() - 1));
         }
 
+        task.setPriority(updatePriorityDto.getPriority());
+
         taskRepository.saveAll(tasksToUpdatePriority);
         return task;
     }
