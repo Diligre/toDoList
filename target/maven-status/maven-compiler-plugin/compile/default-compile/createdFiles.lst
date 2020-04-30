@@ -1,0 +1,12 @@
+com/diligre/dto/SaveTaskDto.class
+com/diligre/repository/ProjectRepository.class
+com/diligre/dto/BulkDeleteDto.class
+com/diligre/dto/UpdateTastDto.class
+com/diligre/service/TaskService.class
+com/diligre/repository/TaskRepository.class
+com/diligre/service/ProjectService.class
+com/diligre/controller/ProjectController.class
+com/diligre/controller/TaskController.class
+com/diligre/entity/Task.class
+com/diligre/config/DatabaseConfig.class
+com/diligre/entity/Project.class
