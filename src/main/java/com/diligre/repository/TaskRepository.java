@@ -27,6 +27,6 @@ public interface TaskRepository extends JpaRepository<Task,Long> {
 
     List<Task> findAllByProjectIdAndPriorityBetween(Long projectId, Long priorityB, Long priorityA);
 
-    List<Task> findAllByProjectId(Long projectId);
+    List<Task> findAllByProjectIdOrderByPriorityAsc(Long projectId);
 
 }

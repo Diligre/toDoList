@@ -35,8 +35,8 @@ public class TaskController {
     }
 
     @GetMapping("/byProject/{projectId}")
-    public List<Task> findAllByProjectId(@PathVariable Long projectId){
-        return taskService.findAllByProjectId(projectId);
+    public List<Task> findAllByProjectIdOrderByPriorityAsc(@PathVariable Long projectId){
+        return taskService.findAllByProjectIdOrderByPriorityAsc(projectId);
     }
 
     @PostMapping

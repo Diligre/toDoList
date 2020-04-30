@@ -119,9 +119,7 @@ public class TaskService {
     }
 
     @Transactional
-    public List<Task> findAllByProjectId(Long projectId){
-      return   taskRepository.findAllByProjectId(projectId);
+    public List<Task> findAllByProjectIdOrderByPriorityAsc(Long projectId){
+      return   taskRepository.findAllByProjectIdOrderByPriorityAsc(projectId);
     }
-
-
 }
