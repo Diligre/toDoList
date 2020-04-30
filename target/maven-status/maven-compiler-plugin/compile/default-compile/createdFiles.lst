@@ -1,4 +1,3 @@
-com/diligre/config/initializer/ApplicationInitializer.class
 com/diligre/dto/SaveTaskDto.class
 com/diligre/repository/ProjectRepository.class
 com/diligre/dto/BulkDeleteDto.class
