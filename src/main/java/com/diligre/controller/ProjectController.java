@@ -23,7 +23,6 @@ public class ProjectController {
 
     @GetMapping
     public List<Project> allData(){
-        System.out.println("vaduxa lubut xyi");
         return projectService.getAll();
     }
 
