@@ -3,6 +3,7 @@ package com.diligre.controller;
 
 import com.diligre.dto.BulkDeleteDto;
 import com.diligre.dto.SaveTaskDto;
+import com.diligre.dto.UpdatePriorityDto;
 import com.diligre.dto.UpdateTastDto;
 import com.diligre.entity.Task;
 import com.diligre.service.TaskService;
@@ -37,6 +38,11 @@ public class TaskController {
     @GetMapping("/byProject/{projectId}")
     public List<Task> findAllByProjectIdOrderByPriorityAsc(@PathVariable Long projectId){
         return taskService.findAllByProjectIdOrderByPriorityAsc(projectId);
+    }
+
+    @PutMapping("/priority")
+    public Task updatePriority(@RequestBody UpdatePriorityDto updatePriorityDto){
+        return taskService.updatePriority(updatePriorityDto);
     }
 
     @PostMapping

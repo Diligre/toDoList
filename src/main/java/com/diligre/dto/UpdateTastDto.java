@@ -13,8 +13,6 @@ public class UpdateTastDto {
 
         private Boolean status;
 
-        private Long priority;
-
         private java.sql.Date deadLine;
 
         private Long projectId;

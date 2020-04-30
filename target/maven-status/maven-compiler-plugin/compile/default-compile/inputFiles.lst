@@ -1,4 +1,5 @@
 /home/sasha/IdeaProjects/toDoList/src/main/java/com/diligre/controller/ProjectController.java
+/home/sasha/IdeaProjects/toDoList/src/main/java/com/diligre/dto/UpdatePriorityDto.java
 /home/sasha/IdeaProjects/toDoList/src/main/java/com/diligre/controller/TaskController.java
 /home/sasha/IdeaProjects/toDoList/src/main/java/com/diligre/config/initializer/ApplicationInitializer.java
 /home/sasha/IdeaProjects/toDoList/src/main/java/com/diligre/dto/UpdateTastDto.java

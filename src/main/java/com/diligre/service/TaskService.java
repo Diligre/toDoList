@@ -3,6 +3,7 @@ package com.diligre.service;
 
 import com.diligre.dto.SaveTaskDto;
 
+import com.diligre.dto.UpdatePriorityDto;
 import com.diligre.dto.UpdateTastDto;
 import com.diligre.entity.Project;
 import com.diligre.entity.Task;
@@ -91,25 +92,6 @@ public class TaskService {
             task.setName(updateTastDto.getName());
             task.setStatus(updateTastDto.getStatus());
 
-            Long newPriority = updateTastDto.getPriority();
-            Long oldPriority = taskRepository.findOneById(updateTastDto.getId()).getPriority();
-
-            List<Task> tasksToUpdatePriority;
-            if (newPriority < oldPriority) {
-                tasksToUpdatePriority = taskRepository.findAllByProjectIdAndPriorityBetween(
-                        updateTastDto.getProjectId(), newPriority, oldPriority - 1);
-                tasksToUpdatePriority.forEach(t -> t.setPriority(t.getPriority() + 1));
-            } else {
-                tasksToUpdatePriority = taskRepository.findAllByProjectIdAndPriorityBetween(
-                        updateTastDto.getProjectId(), oldPriority + 1, newPriority);
-                tasksToUpdatePriority.forEach(t -> t.setPriority(t.getPriority() - 1));
-            }
-
-            taskRepository.saveAll(tasksToUpdatePriority);
-
-
-            task.setPriority(newPriority);
-
             task.setDeadLine(updateTastDto.getDeadLine());
             task.setProject(projectRepository.findOneById(updateTastDto.getProjectId()));
 
@@ -119,7 +101,29 @@ public class TaskService {
     }
 
     @Transactional
-    public List<Task> findAllByProjectIdOrderByPriorityAsc(Long projectId){
-      return   taskRepository.findAllByProjectIdOrderByPriorityAsc(projectId);
+    public Task updatePriority(UpdatePriorityDto updatePriorityDto) {
+
+        Task task = taskRepository.findOneById(updatePriorityDto.getId());
+        Long newPriority = updatePriorityDto.getPriority();
+        Long oldPriority = task.getPriority();
+
+        List<Task> tasksToUpdatePriority;
+        if (newPriority < oldPriority) {
+            tasksToUpdatePriority = taskRepository.findAllByProjectIdAndPriorityBetween(
+                    task.getProject().getId(), newPriority, oldPriority - 1);
+            tasksToUpdatePriority.forEach(t -> t.setPriority(t.getPriority() + 1));
+        } else {
+            tasksToUpdatePriority = taskRepository.findAllByProjectIdAndPriorityBetween(
+                    task.getProject().getId(), oldPriority + 1, newPriority);
+            tasksToUpdatePriority.forEach(t -> t.setPriority(t.getPriority() - 1));
+        }
+
+        taskRepository.saveAll(tasksToUpdatePriority);
+        return task;
+    }
+
+    @Transactional
+    public List<Task> findAllByProjectIdOrderByPriorityAsc(Long projectId) {
+        return taskRepository.findAllByProjectIdOrderByPriorityAsc(projectId);
     }
 }
