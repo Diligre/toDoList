@@ -1,1 +1,1 @@
-web java -Dserver.port=$PORT $JAVA_OPTS -jar target/toDOList-1.0-SNAPSHOT.war
+web: java -jar target/java-getting-started-1.0.jar
