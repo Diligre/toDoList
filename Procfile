@@ -1,1 +1,1 @@
-web: java -jar target/toDoList-1.0.jar
+web: java -jar target/toDOList-1.0-SNAPSHOT.war
