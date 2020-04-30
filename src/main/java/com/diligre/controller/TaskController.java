@@ -34,6 +34,11 @@ public class TaskController {
         return taskService.findOneById(id);
     }
 
+    @GetMapping("/byProject/{projectId}")
+    public List<Task> findAllByProjectId(@PathVariable Long projectId){
+        return taskService.findAllByProjectId(projectId);
+    }
+
     @PostMapping
     public List<Task> saveData(@RequestBody List<SaveTaskDto> saveTaskDtos){
         return taskService.saveData(saveTaskDtos);

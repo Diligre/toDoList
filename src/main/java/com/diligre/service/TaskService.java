@@ -118,5 +118,10 @@ public class TaskService {
         return taskRepository.saveAll(taskList);
     }
 
+    @Transactional
+    public List<Task> findAllByProjectId(Long projectId){
+      return   taskRepository.findAllByProjectId(projectId);
+    }
+
 
 }
