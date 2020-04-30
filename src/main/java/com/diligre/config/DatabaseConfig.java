@@ -27,58 +27,58 @@ import java.util.Properties;
 @ComponentScan(basePackages = "com.diligre.config")
 public class DatabaseConfig {
 
-    @Value("${database.driver}")
+    @Value("org.postgresql.Driver")
     private String dbDriver;
 
-    @Value("${database.url}")
+    @Value("jdbc:postgresql://ec2-79-125-26-232.eu-west-1.compute.amazonaws.com:5432/dm5meh3v2tj98")
     private String dbConnectionUrl;
 
-    @Value("${database.user}")
+    @Value("lptvqmljojllox")
     private String dbUser;
 
-    @Value("${database.password}")
+    @Value("87ef4bbc1660b3c22d01119874a21c0989b544a71e3c8c5f7515fcac07eef322")
     private String dbPassword;
 
-    @Value("${hikari.datasource.setMaxLifetime}")
+    @Value("60000")
     private Integer maxLifetime;
 
-    @Value("${hikari.datasource.setIdleTimeout}")
+    @Value("45000")
     private Integer idleTimeout;
 
-    @Value("${hikari.datasource.setMaximumPoolSize}")
+    @Value("50")
     private Integer maximumPoolSize;
 
-    @Value("${hikari.datasource.cacheServerConfiguration}")
+    @Value("true")
     private String cacheServerConfiguration;
 
-    @Value("${hikari.datasource.prepStmtCacheSqlLimit}")
+    @Value("2048")
     private String prepStmtCacheSqlLimit;
 
-    @Value("${hikari.datasource.alwaysSendSetIsolation}")
+    @Value("false")
     private String alwaysSendSetIsolation;
 
-    @Value("${hikari.datasource.cachePrepStmts}")
+    @Value("true")
     private String cachePrepStmts;
 
-    @Value("${hikari.datasource.maintainTimeStats}")
+    @Value("false")
     private String maintainTimeStats;
 
-    @Value("${hikari.datasource.prepStmtCacheSize}")
+    @Value("250")
     private String prepStmtCacheSize;
 
-    @Value("${hikari.datasource.allowMultiQueries}")
+    @Value("true")
     private String allowMultiQueries;
 
-    @Value("${hibernate.dialect}")
+    @Value("org.hibernate.dialect.PostgreSQLDialect")
     private String hibernateDialect;
 
-    @Value("${hibernate.hbm2ddl.auto}")
+    @Value("update")
     private String hbm2ddl;
 
-    @Value("${hibernate.show_sql}")
+    @Value("true")
     private String showSQL;
 
-    @Value("${hibernate.format_sql}")
+    @Value("true")
     private String formatSQL;
 
     @Bean
