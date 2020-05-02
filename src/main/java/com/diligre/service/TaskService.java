@@ -90,7 +90,7 @@ public class TaskService {
 
             taskList.add(task);
         }
-              return taskRepository.saveAll(taskList);
+        return taskRepository.saveAll(taskList);
     }
 
     @Transactional
@@ -123,7 +123,7 @@ public class TaskService {
     }
 
     @Transactional
-    public List<Task> updateStatusTask(UpdateStatusTaskDto updateStatusTaskDto) {
+    public Task updateStatusTask(UpdateStatusTaskDto updateStatusTaskDto) {
         Task task = taskRepository.findOneById(updateStatusTaskDto.getId());
 
         task.setStatus(updateStatusTaskDto.getStatus());
@@ -132,6 +132,6 @@ public class TaskService {
         tasksToUpdatePriority = taskRepository.findAllByProjectIdAndPriorityAfter(task.getProject().getId(), task.getPriority());
         tasksToUpdatePriority.forEach(t -> t.setPriority(t.getPriority() - 1));
 
-        return taskRepository.findAllByProjectId(task.getProject().getId());
+        return task;
     }
 }

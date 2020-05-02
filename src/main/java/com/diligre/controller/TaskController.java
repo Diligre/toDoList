@@ -65,7 +65,7 @@ public class TaskController {
     }
 
     @PutMapping("/updateStatus")
-    public List<Task> updateStatusTask(@RequestBody UpdateStatusTaskDto updateStatusTaskDto){
+    public Task updateStatusTask(@RequestBody UpdateStatusTaskDto updateStatusTaskDto){
        return taskService.updateStatusTask(updateStatusTaskDto);
     }
 }
