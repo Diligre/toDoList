@@ -132,6 +132,7 @@ public class TaskService {
             List<Task> tasksToUpdatePriority;
             tasksToUpdatePriority = taskRepository.findAllByProjectIdAndPriorityAfter(task.getProject().getId(), task.getPriority());
             tasksToUpdatePriority.forEach(t -> t.setPriority(t.getPriority() - 1));
+            taskRepository.saveAll(tasksToUpdatePriority);
         } else {
             task.setStatus(updateStatusTaskDto.getStatus());
             Long highestPriorityByProjectId = taskRepository.getHighestPriorityByProjectId(task.getProject().getId());
@@ -142,6 +143,6 @@ public class TaskService {
                 task.setPriority(1L);
             }
         }
-        return task;
+        return taskRepository.save(task);
     }
 }
