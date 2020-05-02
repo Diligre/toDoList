@@ -123,7 +123,7 @@ public class TaskService {
     }
 
     @Transactional
-    public Task updateStatusTask(UpdateStatusTaskDto updateStatusTaskDto) {
+    public List<Task> updateStatusTask(UpdateStatusTaskDto updateStatusTaskDto) {
         Task task = taskRepository.findOneById(updateStatusTaskDto.getId());
 
         task.setStatus(updateStatusTaskDto.getStatus());
@@ -131,7 +131,7 @@ public class TaskService {
         List<Task> tasksToUpdatePriority;
         tasksToUpdatePriority = taskRepository.findAllByProjectIdAndPriorityAfter(task.getProject().getId(), task.getPriority());
         tasksToUpdatePriority.forEach(t -> t.setPriority(t.getPriority() - 1));
-        return task;
-    }
 
+        return taskRepository.findAllByProjectId(task.getProject().getId());
+    }
 }
