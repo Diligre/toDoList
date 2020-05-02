@@ -87,7 +87,7 @@ public class TaskService {
             task.setName(updateTastDto.getName());
 
             task.setDeadLine(updateTastDto.getDeadLine());
-            task.setProject(projectRepository.findOneById(updateTastDto.getProjectId()));
+            task.setProject(projectRepository.findOneById(task.getProject().getId()));
 
             taskList.add(task);
         }
