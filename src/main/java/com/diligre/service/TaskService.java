@@ -6,7 +6,6 @@ import com.diligre.dto.SaveTaskDto;
 import com.diligre.dto.UpdatePriorityDto;
 import com.diligre.dto.UpdateStatusTaskDto;
 import com.diligre.dto.UpdateTastDto;
-import com.diligre.entity.Project;
 import com.diligre.entity.Task;
 import com.diligre.repository.ProjectRepository;
 import com.diligre.repository.TaskRepository;
@@ -14,12 +13,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.sql.Date;
-import java.time.Instant;
+
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -89,7 +85,6 @@ public class TaskService {
 
             task.setId(updateTastDto.getId());
             task.setName(updateTastDto.getName());
-            task.setStatus(updateTastDto.getStatus());
 
             task.setDeadLine(updateTastDto.getDeadLine());
             task.setProject(projectRepository.findOneById(updateTastDto.getProjectId()));
@@ -131,12 +126,12 @@ public class TaskService {
     @Transactional
     public Task updateStatusTask(UpdateStatusTaskDto updateStatusTaskDto) {
         Task task = taskRepository.findOneById(updateStatusTaskDto.getId());
+
         task.setStatus(updateStatusTaskDto.getStatus());
         task.setPriority(0L);
         List<Task> tasksToUpdatePriority;
         tasksToUpdatePriority = taskRepository.findAllByProjectIdAndPriorityAfter(task.getProject().getId(), task.getPriority());
         tasksToUpdatePriority.forEach(t -> t.setPriority(t.getPriority() - 1));
-
         return task;
     }
 

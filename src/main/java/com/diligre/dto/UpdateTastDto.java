@@ -11,8 +11,6 @@ public class UpdateTastDto {
 
         private String name;
 
-        private Boolean status;
-
         private java.sql.Date deadLine;
 
         private Long projectId;
