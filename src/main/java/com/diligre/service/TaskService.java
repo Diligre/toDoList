@@ -81,12 +81,11 @@ public class TaskService {
 
         for (UpdateTastDto updateTastDto : tasks) {
 
-            Task task = new Task();
+            Task task = findOneById(updateTastDto.getId());
 
-            task.setId(updateTastDto.getId());
             task.setName(updateTastDto.getName());
-
             task.setDeadLine(updateTastDto.getDeadLine());
+
             task.setProject(projectRepository.findOneById(task.getProject().getId()));
 
             taskList.add(task);

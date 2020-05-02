@@ -13,8 +13,6 @@ public class UpdateTastDto {
 
         private java.sql.Date deadLine;
 
-        private Long projectId;
-
     }
 
 
