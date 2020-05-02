@@ -126,12 +126,17 @@ public class TaskService {
     public Task updateStatusTask(UpdateStatusTaskDto updateStatusTaskDto) {
         Task task = taskRepository.findOneById(updateStatusTaskDto.getId());
 
-        task.setStatus(updateStatusTaskDto.getStatus());
-        task.setPriority(0L);
-        List<Task> tasksToUpdatePriority;
-        tasksToUpdatePriority = taskRepository.findAllByProjectIdAndPriorityAfter(task.getProject().getId(), task.getPriority());
-        tasksToUpdatePriority.forEach(t -> t.setPriority(t.getPriority() - 1));
-
+        if (updateStatusTaskDto.getStatus().equals(true)) {
+            task.setStatus(updateStatusTaskDto.getStatus());
+            task.setPriority(0L);
+            List<Task> tasksToUpdatePriority;
+            tasksToUpdatePriority = taskRepository.findAllByProjectIdAndPriorityAfter(task.getProject().getId(), task.getPriority());
+            tasksToUpdatePriority.forEach(t -> t.setPriority(t.getPriority() - 1));
+        }
+         else {
+             task.setStatus(updateStatusTaskDto.getStatus());
+             task.setPriority(taskRepository.getHighestPriorityByProjectId(task.getProject().getId())+1);
+        }
         return task;
     }
 }
