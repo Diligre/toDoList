@@ -1,10 +1,7 @@
 package com.diligre.controller;
 
 
-import com.diligre.dto.BulkDeleteDto;
-import com.diligre.dto.SaveTaskDto;
-import com.diligre.dto.UpdatePriorityDto;
-import com.diligre.dto.UpdateTastDto;
+import com.diligre.dto.*;
 import com.diligre.entity.Task;
 import com.diligre.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,6 +62,11 @@ public class TaskController {
     public ResponseEntity<String> bulkDelete(@RequestBody BulkDeleteDto bulkDeleteDto){
         taskService.bulkDelete(bulkDeleteDto.getIds());
         return ResponseEntity.ok("delete"+bulkDeleteDto.getIds());
+    }
+
+    @PutMapping("/updateStatus")
+    public Task updateStatusTask(@RequestBody UpdateStatusTaskDto updateStatusTaskDto){
+       return taskService.updateStatusTask(updateStatusTaskDto);
     }
 
 }

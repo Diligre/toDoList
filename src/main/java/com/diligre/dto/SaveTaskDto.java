@@ -10,13 +10,9 @@ import java.util.Date;
 @NoArgsConstructor
 public class SaveTaskDto {
 
-    private Long id;
-
     private String name;
 
-    private Boolean status;
-
-    private Date deadLine;
+    private Boolean status = false;
 
     private Long projectId;
 

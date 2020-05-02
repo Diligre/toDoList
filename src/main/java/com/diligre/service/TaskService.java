@@ -4,6 +4,7 @@ package com.diligre.service;
 import com.diligre.dto.SaveTaskDto;
 
 import com.diligre.dto.UpdatePriorityDto;
+import com.diligre.dto.UpdateStatusTaskDto;
 import com.diligre.dto.UpdateTastDto;
 import com.diligre.entity.Project;
 import com.diligre.entity.Task;
@@ -33,15 +34,15 @@ public class TaskService {
     }
 
     public void delete(Long id) {
-
         Task task = taskRepository.findOneById(id);
 
-        List<Task> tasks = taskRepository.findAllByProjectIdAndPriorityAfter(task.getProject().getId(), task.getPriority());
-        tasks.forEach(t -> t.setPriority(t.getPriority() - 1));
-
+        List<Task> tasks;
+        if (task.getPriority() != 0) {
+            tasks = taskRepository.findAllByProjectIdAndPriorityAfter(task.getProject().getId(), task.getPriority());
+            tasks.forEach(t -> t.setPriority(t.getPriority() - 1));
+            taskRepository.saveAll(tasks);
+        }
         taskRepository.deleteById(id);
-        taskRepository.saveAll(tasks);
-
     }
 
     public Task findOneById(Long id) {
@@ -61,10 +62,8 @@ public class TaskService {
 
             Task task = new Task();
 
-            task.setId(saveTaskDto.getId());
             task.setName(saveTaskDto.getName());
             task.setStatus(saveTaskDto.getStatus());
-            task.setDeadLine(saveTaskDto.getDeadLine());
 
             Long highestPriorityByProjectId = taskRepository.getHighestPriorityByProjectId(saveTaskDto.getProjectId());
             if (highestPriorityByProjectId == null) {
@@ -128,4 +127,17 @@ public class TaskService {
     public List<Task> findAllByProjectIdOrderByPriorityAsc(Long projectId) {
         return taskRepository.findAllByProjectIdOrderByPriorityAsc(projectId);
     }
+
+    @Transactional
+    public Task updateStatusTask(UpdateStatusTaskDto updateStatusTaskDto) {
+        Task task = taskRepository.findOneById(updateStatusTaskDto.getId());
+        task.setStatus(updateStatusTaskDto.getStatus());
+        task.setPriority(0L);
+        List<Task> tasksToUpdatePriority;
+        tasksToUpdatePriority = taskRepository.findAllByProjectIdAndPriorityAfter(task.getProject().getId(), task.getPriority());
+        tasksToUpdatePriority.forEach(t -> t.setPriority(t.getPriority() - 1));
+
+        return task;
+    }
+
 }
