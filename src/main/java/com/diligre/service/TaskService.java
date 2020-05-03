@@ -76,21 +76,14 @@ public class TaskService {
     }
 
     @Transactional
-    public List<Task> updateData(List<UpdateTastDto> tasks) {
-        List<Task> taskList = new ArrayList<>();
+    public Task updateData(UpdateTastDto updateTastDto) {
+        Task task = findOneById(updateTastDto.getId());
 
-        for (UpdateTastDto updateTastDto : tasks) {
+        task.setName(updateTastDto.getName());
+        task.setDeadLine(updateTastDto.getDeadLine());
+        task.setProject(projectRepository.findOneById(task.getProject().getId()));
 
-            Task task = findOneById(updateTastDto.getId());
-
-            task.setName(updateTastDto.getName());
-            task.setDeadLine(updateTastDto.getDeadLine());
-
-            task.setProject(projectRepository.findOneById(task.getProject().getId()));
-
-            taskList.add(task);
-        }
-        return taskRepository.saveAll(taskList);
+        return taskRepository.save(task);
     }
 
     @Transactional

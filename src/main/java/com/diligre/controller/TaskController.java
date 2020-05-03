@@ -48,7 +48,7 @@ public class TaskController {
     }
 
     @PutMapping
-    public List<Task> updateData(@RequestBody List<UpdateTastDto> updateTastDtos){
+    public Task updateData(@RequestBody UpdateTastDto updateTastDtos){
         return taskService.updateData(updateTastDtos);
     }
 
