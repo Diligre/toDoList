@@ -54,7 +54,7 @@ public class TaskService {
     public Task saveData(SaveTaskDto saveTaskDto) {
         Task task = new Task();
 
-        task.setName(saveTaskDto.getName());
+             task.setName(saveTaskDto.getName());
         task.setStatus(saveTaskDto.getStatus());
 
         Long highestPriorityByProjectId = taskRepository.getHighestPriorityByProjectId(saveTaskDto.getProjectId());
@@ -66,7 +66,7 @@ public class TaskService {
 
         task.setProject(projectRepository.findOneById(saveTaskDto.getProjectId()));
 
-        return taskRepository.save(task);
+                    return taskRepository.save(task);
     }
 
     @Transactional
