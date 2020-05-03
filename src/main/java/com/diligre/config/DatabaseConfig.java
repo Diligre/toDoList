@@ -30,13 +30,13 @@ public class DatabaseConfig {
     @Value("org.postgresql.Driver")
     private String dbDriver;
 
-    @Value("jdbc:postgresql://ec2-79-125-26-232.eu-west-1.compute.amazonaws.com:5432/dm5meh3v2tj98")
+    @Value("jdbc:postgresql://ec2-54-247-79-178.eu-west-1.compute.amazonaws.com:5432/d5gid22gldep5b")
     private String dbConnectionUrl;
 
-    @Value("lptvqmljojllox")
+    @Value("kjvgclsifjhwig")
     private String dbUser;
 
-    @Value("87ef4bbc1660b3c22d01119874a21c0989b544a71e3c8c5f7515fcac07eef322")
+    @Value("ae13875e871bd8f643a18b3e806b508473fab8c3c6ed69bccaddb46d1f097e40")
     private String dbPassword;
 
     @Value("60000")
