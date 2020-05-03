@@ -43,7 +43,7 @@ public class TaskController {
     }
 
     @PostMapping
-    public List<Task> saveData(@RequestBody List<SaveTaskDto> saveTaskDtos){
+    public Task saveData(@RequestBody SaveTaskDto saveTaskDtos){
         return taskService.saveData(saveTaskDtos);
     }
 

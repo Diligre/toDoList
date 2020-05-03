@@ -51,28 +51,22 @@ public class TaskService {
     }
 
     @Transactional
-    public List<Task> saveData(List<SaveTaskDto> tasks) {
-        List<Task> taskList = new ArrayList<>();
+    public Task saveData(SaveTaskDto saveTaskDto) {
+        Task task = new Task();
 
-        for (SaveTaskDto saveTaskDto : tasks) {
+        task.setName(saveTaskDto.getName());
+        task.setStatus(saveTaskDto.getStatus());
 
-            Task task = new Task();
-
-            task.setName(saveTaskDto.getName());
-            task.setStatus(saveTaskDto.getStatus());
-
-            Long highestPriorityByProjectId = taskRepository.getHighestPriorityByProjectId(saveTaskDto.getProjectId());
-            if (highestPriorityByProjectId == null) {
-                task.setPriority(1L);
-            } else {
-                task.setPriority(highestPriorityByProjectId + 1L);
-            }
-
-            task.setProject(projectRepository.findOneById(saveTaskDto.getProjectId()));
-
-            taskList.add(task);
+        Long highestPriorityByProjectId = taskRepository.getHighestPriorityByProjectId(saveTaskDto.getProjectId());
+        if (highestPriorityByProjectId == null) {
+            task.setPriority(1L);
+        } else {
+            task.setPriority(highestPriorityByProjectId + 1L);
         }
-        return taskRepository.saveAll(taskList);
+
+        task.setProject(projectRepository.findOneById(saveTaskDto.getProjectId()));
+
+        return taskRepository.save(task);
     }
 
     @Transactional
