@@ -26,9 +26,6 @@ public class Task {
     @Column(name = "priority")
     private Long priority;
 
-    @Column(name = "dead_line")
-    private Date deadLine;
-
     @ManyToOne
     @JoinColumn(name = "project_id")
     private Project project;

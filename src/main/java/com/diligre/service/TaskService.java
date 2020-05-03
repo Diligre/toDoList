@@ -74,7 +74,6 @@ public class TaskService {
         Task task = findOneById(updateTastDto.getId());
 
         task.setName(updateTastDto.getName());
-        task.setDeadLine(updateTastDto.getDeadLine());
         task.setProject(projectRepository.findOneById(task.getProject().getId()));
 
         return taskRepository.save(task);

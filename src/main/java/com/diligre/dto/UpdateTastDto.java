@@ -11,8 +11,6 @@ public class UpdateTastDto {
 
         private String name;
 
-        private java.sql.Date deadLine;
-
     }
 
 
