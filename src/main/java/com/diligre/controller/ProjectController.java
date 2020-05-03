@@ -33,13 +33,13 @@ public class ProjectController {
     }
 
     @PostMapping
-    public List<Project> saveData(@RequestBody List<Project> projects){
-        return projectService.saveData(projects);
+    public Project saveData(@RequestBody Project project){
+        return projectService.saveData(project);
     }
 
     @PutMapping
-    public List<Project> update(@RequestBody List<Project> projects){
-        return projectService.saveData(projects);
+    public Project update(@RequestBody Project project){
+        return projectService.saveData(project);
     }
 
     @DeleteMapping("/{id}")

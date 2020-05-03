@@ -41,8 +41,8 @@ public class ProjectService {
     }
 
     @Transactional
-    public List<Project> saveData(List<Project> projects){
-        return projectRepository.saveAll(projects);
+    public Project saveData(Project projects){
+        return projectRepository.save(projects);
     }
 
 }
